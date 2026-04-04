@@ -1,0 +1,703 @@
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.app-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* ── Header nav ──────────────────────────────────────────────────────────── */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 24px;
+}
+
+.nav-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-light);
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background 0.12s, color 0.12s;
+}
+
+.nav-link:hover {
+    background: var(--surface-hover);
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.nav-link--active {
+    color: var(--primary);
+    background: var(--primary-muted);
+}
+
+/* ── Configure page ──────────────────────────────────────────────────────── */
+.cfg-page {
+    max-width: 720px;
+}
+
+.cfg-header {
+    margin-bottom: 36px;
+}
+
+.cfg-subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 6px;
+}
+
+.cfg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.cfg-section {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.cfg-section:last-of-type {
+    border-bottom: none;
+}
+
+.cfg-question {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.cfg-q-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--primary);
+    background: var(--primary-muted);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.cfg-q-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    margin-bottom: 3px;
+}
+
+.cfg-q-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.cfg-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.cfg-chip-label {
+    cursor: pointer;
+}
+
+.cfg-chip-label input[type="checkbox"] {
+    display: none;
+}
+
+.cfg-chip {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: all 0.13s ease;
+    user-select: none;
+}
+
+.cfg-chip:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.cfg-chip-label input:checked + .cfg-chip {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.cfg-chip--danger {
+    border-color: rgba(239, 68, 68, 0.3);
+    color: var(--danger);
+}
+
+.cfg-chip-label input:checked + .cfg-chip--danger {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+}
+
+.cfg-chip--accent { /* role/skill filters — same as default for now */ }
+
+.cfg-custom {
+    margin-top: 4px;
+}
+
+.cfg-input {
+    width: 100%;
+    max-width: 480px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text-main);
+    background: var(--card-bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.12s;
+}
+
+.cfg-input:focus {
+    border-color: var(--primary);
+}
+
+.cfg-input::placeholder {
+    color: var(--text-muted);
+}
+
+.cfg-save {
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cfg-save-btn {
+    padding: 10px 28px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.13s;
+}
+
+.cfg-save-btn:hover {
+    background: var(--primary-hover);
+}
+
+.cfg-cancel {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.cfg-cancel:hover {
+    color: var(--text-main);
+}
+
+/* ── Config gear button in filter bar ────────────────────────────────────── */
+.filter-btn--config {
+    margin-left: auto;
+    font-size: 15px;
+    padding: 5px 10px;
+    color: var(--text-muted);
+    border-color: transparent;
+    text-decoration: none;
+}
+
+.filter-btn--config:hover {
+    background: var(--surface-hover);
+    color: var(--text-main);
+    border-color: var(--border-strong);
+}
+
+/* ── Configure page — section headers ────────────────────────────────────── */
+.cfg-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cfg-section-icon {
+    font-size: 15px;
+}
+
+/* ── Secrets grid ─────────────────────────────────────────────────────────── */
+.cfg-secrets-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.cfg-secret-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.cfg-secret-row:last-child {
+    border-bottom: none;
+}
+
+.cfg-secret-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.cfg-secret-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.cfg-secret-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 380px;
+}
+
+.cfg-secret-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.cfg-secret-value {
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--text-muted);
+    background: var(--surface-hover);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    min-width: 120px;
+    text-align: center;
+}
+
+.cfg-secret-value.is-set {
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.cfg-update-btn {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 5px 14px;
+    border: 1.5px solid var(--primary);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.12s, color 0.12s;
+}
+
+.cfg-update-btn:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* ── Callout ──────────────────────────────────────────────────────────────── */
+.cfg-callout {
+    margin-top: 14px;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.cfg-callout code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+/* ── Scheduler inline form ────────────────────────────────────────────────── */
+.cfg-inline-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.cfg-inline-label {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.cfg-input--short {
+    width: 80px;
+    text-align: center;
+}
+
+.cfg-apply-btn {
+    padding: 7px 18px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.cfg-apply-btn:hover {
+    background: var(--primary-hover);
+}
+
+/* ── Sources list ─────────────────────────────────────────────────────────── */
+.cfg-sources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.cfg-source-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.cfg-source-row:last-child { border-bottom: none; }
+
+.cfg-source-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+}
+
+.cfg-source-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+.cfg-source-type {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-muted);
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.cfg-source-url {
+    font-size: 11px;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+}
+
+.cfg-remove-btn {
+    font-size: 13px;
+    font-family: inherit;
+    padding: 4px 10px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.12s, color 0.12s;
+}
+
+.cfg-remove-btn:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.cfg-add-source-btn {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 7px 18px;
+    border: 1.5px dashed var(--border-strong);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: border-color 0.12s, color 0.12s;
+}
+
+.cfg-add-source-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* ── Modal (native <dialog>) ──────────────────────────────────────────────── */
+.cfg-modal {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-floating);
+    padding: 0;
+    max-width: 440px;
+    width: 90vw;
+    background: var(--card-bg);
+}
+
+.cfg-modal--wide {
+    max-width: 580px;
+}
+
+.cfg-modal::backdrop {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+}
+
+.cfg-modal-inner {
+    padding: 28px;
+}
+
+.cfg-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+}
+
+.cfg-modal-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+.cfg-modal-hint code {
+    background: var(--surface-hover);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+.cfg-modal-input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cfg-modal-field {
+    margin-bottom: 14px;
+}
+
+.cfg-modal-field--inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cfg-modal-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.cfg-modal-label--small {
+    font-size: 11px;
+    width: 100px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.cfg-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 4px;
+}
+
+.app-logo {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.header-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ── Main content ─────────────────────────────────────────────────────────── */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px 48px;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────────── */
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-item {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.stat-item strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.stat-new strong {
+    color: var(--success);
+}
+
+.stat-sep {
+    color: var(--border-strong);
+    user-select: none;
+}
+
+/* ── Filter bar ──────────────────────────────────────────────────────────── */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 36px;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    min-width: 38px;
+}
+
+/* ── Section labels ──────────────────────────────────────────────────────── */
+.section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.section-label.is-new {
+    color: var(--success);
+}
+
+.new-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    flex-shrink: 0;
+}
+
+/* ── Job grid ─────────────────────────────────────────────────────────────── */
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.app-footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    margin-top: 16px;
+}

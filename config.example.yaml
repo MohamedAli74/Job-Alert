@@ -1,0 +1,130 @@
+# Job Alert — Configuration Template
+# Copy this file to config.yaml and fill in your values.
+# config.yaml is gitignored so your tokens stay local.
+#
+# ARCHITECTURE:
+#   VM (Oracle Cloud Free):  runs notify.py — scrapes sources, sends alerts to Telegram channel
+#   Local machine:           runs run.py   — Flask dashboard reads from channel via Telethon
+#   Telegram channel:        the "database" — all job alerts and [*LOADED*] markers live here
+
+telegram:
+  # ── Bot credentials (used by both VM and local dashboard) ──────────────────
+  # Create a bot via @BotFather on Telegram.
+  bot_token: "YOUR_BOT_TOKEN_HERE"
+
+  # The private Telegram channel where alerts are posted.
+  # How to set up:
+  #   1. Create a new private channel in Telegram
+  #   2. Add your bot as an Administrator with "Post Messages" permission
+  #   3. Forward any message from the channel to @userinfobot to get its ID
+  #      (it will look like -1001234567890)
+  chat_id: "YOUR_CHANNEL_ID_HERE"
+
+  # ── Telethon credentials (used ONLY by the local dashboard) ───────────────
+  # Needed to read message history from the channel.
+  # Get from: https://my.telegram.org → Log in → API Development Tools → Create app
+  api_id:   YOUR_API_ID_HERE        # integer, e.g. 1234567
+  api_hash: "YOUR_API_HASH_HERE"    # string, e.g. "abc123def456..."
+
+scheduler:
+  # How often the VM checks for new jobs (in minutes)
+  interval_minutes: 60
+
+filters:
+  # Job title must contain at least one seniority keyword.
+  # Set to [] to match all seniority levels.
+  title_keywords:
+    - "intern"
+    - "internship"
+    - "graduate"
+    - "entry level"
+    - "junior"
+
+  # Job title must ALSO contain at least one software-field keyword.
+  # This drops accounting/law/marketing internships.
+  # Set to [] to match all fields.
+  role_keywords:
+    - "software"
+    - "engineer"
+    - "developer"
+    - "programming"
+    - "backend"
+    - "frontend"
+    - "full stack"
+    - "fullstack"
+    - "devops"
+    - "data"
+    - "machine learning"
+    - "ml"
+    - "ai"
+    - "cyber"
+    - "security"
+    - "web"
+    - "mobile"
+    - "ios"
+    - "android"
+    - "cloud"
+    - "swe"
+    - "sde"
+
+  # Jobs whose title contains any of these are silently dropped (seniority guard).
+  exclude_keywords:
+    - "senior"
+    - "sr."
+    - "lead"
+    - "principal"
+    - "staff engineer"
+    - "manager"
+    - "director"
+    - "head of"
+    - "vp"
+
+  # Job location must contain at least one of these (case-insensitive).
+  # Include "remote" to also accept jobs with a blank location field.
+  locations:
+    - "remote"
+    - "uk"
+    - "united kingdom"
+    - "london"
+    - "israel"
+    - "tel aviv"
+    - "ramat gan"
+    - "haifa"
+    - "beer sheva"
+    - "yokneam"
+
+sources:
+  # ── JSON API ────────────────────────────────────────────────────────────────
+  # Map our field names to the API's field names.
+  # If a field returns a list (e.g. tags), it is joined as ", ".
+  - name: RemoteOK
+    type: api_json
+    url: "https://remoteok.io/api"
+    fields:
+      title: position
+      company: company
+      location: location
+      url: url
+      skills: tags
+
+  # ── RSS Feed ─────────────────────────────────────────────────────────────────
+  # Map our field names to RSS entry attribute names.
+  - name: HN Jobs
+    type: rss
+    url: "https://hnrss.org/jobs"
+    fields:
+      title: title
+      url: link
+
+  # ── HTML Scrape ──────────────────────────────────────────────────────────────
+  # CSS selectors. A selector ending in [attr] extracts that attribute value
+  # instead of text (e.g. "a[href]" extracts the href).
+  # - name: MyCustomSite
+  #   type: html_scrape
+  #   url: "https://example.com/jobs"
+  #   selectors:
+  #     job_container: ".job-card"
+  #     title: "h2.title"
+  #     company: ".company-name"
+  #     url: "a[href]"
+  #     skills: ".tags"
